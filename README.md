@@ -13,6 +13,8 @@ sudo apt install isc-dhcp-client –y
 sudo ip link set enp0s8 up
 sudo dhclient enp0s8
 ```
+
+если enp0s8 не найден то команда ```ip link show``` и использовать похожий
 ```
 ip a
 ```
