@@ -93,7 +93,7 @@ sudo nano /etc/nginx/sites-available/default
 внутри меняем порт с 80 на 81, чтобы не было конфликта портов
 
 ```
-sudo ln -s /etc/nginx/sites-available/aos_api /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/admos2 /etc/nginx/sites-enabled/
 sudo systemctl restart nginx
 ```
 
