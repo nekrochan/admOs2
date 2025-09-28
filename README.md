@@ -99,6 +99,7 @@ location / {
     proxy_cache_bypass $http_upgrade;
 }
 ```
+ОТСТУПЫ ЗДЕСЬ - ПО ДВЕ ТАБУЛЯЦИИ!!
 ctrl+O - сохранить, потом enter, потом ctrl+X чтобы выйти
 
 ```
