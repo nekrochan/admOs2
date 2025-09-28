@@ -158,7 +158,7 @@ curl http://[ip-адрес]/health
 sudo systemctl status nginx
 sudo systemctl status admos2
 ```
-###502 Bad Gateway
+### 502 Bad Gateway
 Найти опечатку в конфигах, рестартнуть сервис:
 ```
 sudo systemctl daemon-reexec
