@@ -151,3 +151,24 @@ curl http://[ip-адрес]/api/owners
 
 curl http://[ip-адрес]/health
 ```
+
+## Ошибки
+Проверить состояние:
+```
+sudo systemctl status nginx
+sudo systemctl status admos2
+```
+###502 Bad Gateway
+Найти опечатку в конфигах, рестартнуть сервис:
+```
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable admos2
+sudo systemctl restart admos2
+```
+***Везде должно быть написано http, не https!!***
+
+в каких-то случаях, я хз, мб нужно перезапустить сам сервер:
+```
+sudo systemctl restart nginx
+```
