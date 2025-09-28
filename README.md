@@ -1,8 +1,8 @@
-Шаг 0 (Настраиваем сеть)
+## Шаг 0 (Настраиваем сеть)
 
 Сразу после создания виртуальной машины, до установки ОС, заходим в ее настройки - сеть - меняем тип подключения на сетевой мост - ок.
 
-Шаг 1 (устанавливам .NET 6)
+## Шаг 1 (устанавливам .NET 6)
 
 ```
 sudo apt install -y wget apt-transport-https nginx
@@ -12,7 +12,7 @@ sudo apt update
 sudo apt install -y dotnet-sdk-6.0 aspnetcore-runtime-6.0
 ```
 
-Шаг 2 (Создаем нужные директории)
+## Шаг 2 (Создаем нужные директории)
 
 
 ```
@@ -22,7 +22,7 @@ sudo chmod 755 /var/www/app
 mkdir -p ~/app
 ```
 
-Шаг 3 (Скачиваем приложение)
+## Шаг 3 (Скачиваем приложение)
 
 ```
 cd ~/app
@@ -30,13 +30,13 @@ git clone https://github.com/nekrochan/admOs2.git
 cd admOs2
 ```
 
-Шаг 4 (Сборка и публикация)
+## Шаг 4 (Сборка и публикация)
 
 ```
 sudo dotnet publish -c Release -o /var/www/app
 ```
 
-Шаг 5 (Создаем сервис)
+## Шаг 5 (Создаем сервис)
 
 ```
 sudo nano /etc/systemd/system/admos2.service
@@ -63,7 +63,9 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 WantedBy=multi-user.target
 ```
 
-Шаг 6 (Настройка Nginx)
+```ctrl+O``` - сохранить, потом ```enter```, потом ```ctrl+X``` чтобы выйти
+
+## Шаг 6 (Настройка Nginx)
 
 ```
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/admos2
@@ -73,8 +75,13 @@ sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/admos2
 sudo nano /etc/nginx/sites-available/admos2
 ```
 
-убираем default server возле адреса и меняем в location:
+в блоке сервер должно быть написано так (нужно убрать default_server):
+```
+listen 80;
+listen [::]:80;
+```
 
+поменять блок location, он должен выглядеть так:
 ```
 location / {
     proxy_pass         http://localhost:5000;
@@ -85,6 +92,7 @@ location / {
     proxy_cache_bypass $http_upgrade;
 }
 ```
+ctrl+O - сохранить, потом enter, потом ctrl+X чтобы выйти
 
 ```
 sudo nano /etc/nginx/sites-available/default
@@ -96,10 +104,11 @@ sudo nano /etc/nginx/sites-available/default
 sudo ln -s /etc/nginx/sites-available/admos2 /etc/nginx/sites-enabled/
 sudo systemctl restart nginx
 ```
+ctrl+O - сохранить, потом enter, потом ctrl+X чтобы выйти
 
-Шаг 7 (Тестируем)
+## Шаг 7 (Тестируем)
 
-В виртуальной машине вводим команду ip address show, берем адрес после inet (не loopback).
+***В виртуальной машине вводим команду ip address show, берем адрес после inet (не loopback).***
 
 В браузере:
 
