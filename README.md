@@ -65,6 +65,13 @@ WantedBy=multi-user.target
 
 ```ctrl+O``` - сохранить, потом ```enter```, потом ```ctrl+X``` чтобы выйти
 
+```
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable admos2
+sudo systemctl start admos2
+```
+
 ## Шаг 6 (Настройка Nginx)
 
 ```
