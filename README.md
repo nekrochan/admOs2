@@ -108,6 +108,10 @@ sudo nano /etc/nginx/sites-available/default
 
 внутри меняем порт с 80 на 81, чтобы не было конфликта портов
 
+
+
+Чтобы можно было получить доступ к admos на сервере по сети, нужно добавитьь ссылку на него в активированные сайты:
+
 ```
 sudo ln -s /etc/nginx/sites-available/admos2 /etc/nginx/sites-enabled/
 sudo systemctl restart nginx
@@ -116,9 +120,15 @@ ctrl+O - сохранить, потом enter, потом ctrl+X чтобы вы
 
 ## Шаг 7 (Тестируем)
 
-***В виртуальной машине вводим команду ```ip address show```, берем адрес после inet (не loopback).***
+***В виртуальной машине вводим команду:***
+```
+ip address show
+```
+***берем адрес после inet (не loopback).***
 
-В браузере:
+
+
+### В браузере:
 
 ```
 http://[ip-адрес]/api/cars
@@ -132,7 +142,7 @@ http://[ip-адрес]/api/owners
 http://[ip-адрес]/health
 ```
 
-В PowerShell (Windows):
+### В PowerShell (Windows):
 
 ```
 Invoke-RestMethod http://[ip-адрес]/api/cars
@@ -142,7 +152,7 @@ Invoke-RestMethod http://[ip-адрес]/api/owners
 Invoke-RestMethod http://[ip-адрес]/health
 ```
 
-В терминале Linux:
+### В терминале Linux:
 
 ```
 curl http://[ip-адрес]/api/cars
